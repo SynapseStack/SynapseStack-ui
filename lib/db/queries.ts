@@ -33,10 +33,11 @@ import type { ArtifactKind } from '@/components/artifact';
 // use the Drizzle adapter for Auth.js / NextAuth
 // https://authjs.dev/reference/adapter/drizzle
 
-// biome-ignore lint: Forbidden non-null assertion.
+// biome-ignore lint: FoFailed to crerbidden non-null assertion.
 const client = postgres(process.env.POSTGRES_URL!);
+console.log('Connecting to database...');
 const db = drizzle(client);
-
+console.log('Connected to database');
 export async function getUser(email: string): Promise<Array<User>> {
   try {
     return await db.select().from(user).where(eq(user.email, email));
